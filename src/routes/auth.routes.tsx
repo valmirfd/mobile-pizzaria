@@ -4,7 +4,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 
-const AuthStack = createNativeStackNavigator();
+export type StackParamList = {
+  SignIn: undefined;
+  SignUp: undefined;
+}
+
+const AuthStack = createNativeStackNavigator<StackParamList>();
 
 
 function AuthRoutes() {
@@ -20,6 +25,9 @@ function AuthRoutes() {
       <AuthStack.Screen
         name="SignUp"
         component={SignUp}
+        options={{
+          headerShown: false
+        }}
       />
     </AuthStack.Navigator>
   );
