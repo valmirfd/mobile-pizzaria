@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import {
     Background,
@@ -16,8 +16,25 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../routes/auth.routes";
 
+import { AuthContext } from "../../contexts/AuthContxt";
+
+
 export default function SignIn() {
     const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
+    const { user } = useContext(AuthContext);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleLogin() {
+        if (email === '' || password === '') {
+            return;
+        }
+
+        console.log("Email: " + email);
+    }
+
+
 
     return (
         <Background>
@@ -31,6 +48,8 @@ export default function SignIn() {
                     <Input
                         placeholder="Digite seu email"
                         placeholderTextColor="#F0F0F0"
+                        value={email}
+                        onChangeText={setEmail}
                     />
                 </AreaInput>
 
@@ -38,6 +57,8 @@ export default function SignIn() {
                     <Input
                         placeholder="Digite sua senha"
                         placeholderTextColor="#F0F0F0"
+                        value={password}
+                        onChangeText={setPassword}
                     />
                 </AreaInput>
 
