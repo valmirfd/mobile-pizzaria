@@ -21,17 +21,17 @@ import { AuthContext } from "../../contexts/AuthContxt";
 
 export default function SignIn() {
     const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
-    const { user } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin() {
+    async function handleLogin() {
         if (email === '' || password === '') {
             return;
         }
 
-        console.log("Email: " + email);
+        await signIn({ email, password })
     }
 
 
@@ -62,7 +62,7 @@ export default function SignIn() {
                     />
                 </AreaInput>
 
-                <SubmitButton>
+                <SubmitButton onPress={handleLogin}>
                     <SubmitText>Acessar</SubmitText>
                 </SubmitButton>
 
