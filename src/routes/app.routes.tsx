@@ -36,6 +36,9 @@ function AppRoutes() {
             <AppDrawer.Screen
                 name="Pedido"
                 component={Pedido}
+                options={{
+                    title: 'Abrir Mesa'
+                }}
             />
             <AppDrawer.Screen
                 name="Dashboard"
