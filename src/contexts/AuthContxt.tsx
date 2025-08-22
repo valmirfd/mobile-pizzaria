@@ -9,12 +9,14 @@ type AuthContextData = {
     user: UserProps;
     isAuthenticated: boolean;
     signIn: (credentials: SignInProps) => Promise<void>;
+    loadingAuth: boolean;
+    loading: boolean;
+    signOut: () => Promise<void>;
 }
 
 type UserProps = {
     id: string;
     name: string;
-    email: string;
     token: string;
 }
 
@@ -34,13 +36,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<UserProps>({
         id: '',
         name: '',
-        email: '',
         token: ''
     });
 
-    const [loadingAuth, setLoadingAuth] = useState(false);
+    const [loadingAuth, setLoadingAuth] = useState(false)
+    const [loading, setLoading] = useState(true);
 
-    const isAuthenticated = !!user.email;
+    const isAuthenticated = !!user.id;
 
     useEffect(() => {
         async function getUser() {
@@ -55,14 +57,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 setUser({
                     id: hasUser.id,
                     name: hasUser.name,
-                    email: hasUser.email,
                     token: hasUser.token,
                 })
+                //console.log(user);
             }
 
-        }
+            setLoading(false);
 
-        console.log(user);
+        }
 
         getUser();
 
@@ -91,7 +93,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
             setUser({
-                id, name, email, token
+                id, name, token
             });
 
             console.log(user);
@@ -104,8 +106,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }
 
+    async function signOut() {
+        await AsyncStorage.clear()
+            .then(() => {
+                setUser({
+                    id: '',
+                    name: '',
+                    token: ''
+                })
+            })
+    }
+
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+        <AuthContext.Provider value={{
+            user,
+            isAuthenticated,
+            signIn,
+            loading,
+            loadingAuth,
+            signOut
+        }}>
             <SafeAreaProvider>
                 {children}
             </SafeAreaProvider>
