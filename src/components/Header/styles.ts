@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 
-export const Container = styled.SafeAreaView`
+
+export const Container = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
@@ -10,6 +11,8 @@ export const Container = styled.SafeAreaView`
     width: '100%';
     max-height: 60px;
 `;
+
+
 
 export const Title = styled.Text`
     font-size: 22px;

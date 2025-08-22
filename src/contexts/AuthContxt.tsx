@@ -1,4 +1,5 @@
-import React, { useState, createContext, ReactNode } from "react";
+import React, { useState, createContext, ReactNode, useEffect } from "react";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -41,6 +42,32 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     const isAuthenticated = !!user.email;
 
+    useEffect(() => {
+        async function getUser() {
+            //Buscar dados do user no celular
+            const userInfo = await AsyncStorage.getItem('@pizzatoken');
+            let hasUser: UserProps = JSON.parse(userInfo || '{}');
+
+            //Verificar se vei informações
+            if (Object.keys(hasUser).length > 0) {
+                api.defaults.headers.common['Authorization'] = `Bearer ${hasUser.token}`;
+
+                setUser({
+                    id: hasUser.id,
+                    name: hasUser.name,
+                    email: hasUser.email,
+                    token: hasUser.token,
+                })
+            }
+
+        }
+
+        console.log(user);
+
+        getUser();
+
+    }, []);
+
     async function signIn({ email, password }: SignInProps) {
         setLoadingAuth(true);
 
@@ -67,6 +94,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 id, name, email, token
             });
 
+            console.log(user);
+
             setLoadingAuth(false)
 
         } catch (err) {
@@ -77,7 +106,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     return (
         <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
-            {children}
+            <SafeAreaProvider>
+                {children}
+            </SafeAreaProvider>
         </AuthContext.Provider>
     );
 }
