@@ -13,7 +13,7 @@ export default function Dashboard() {
 
     return (
         <Background>
-            <Header title="Abrir Pedidos" />
+            <Header title="Dashboard" />
             <Button
                 title="Sair do app"
                 onPress={signOut}

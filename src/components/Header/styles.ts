@@ -16,11 +16,12 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
     font-size: 22px;
-    margin-left: 8px;
+    margin-left: 30px;
     color: #FFF;
 `;
 
 export const ButtonMenu = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
+    align-self: flex-start;
 `;

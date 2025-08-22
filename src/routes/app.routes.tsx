@@ -2,8 +2,10 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Dashboard from "../pages/Dashboard";
+import Pedido from "../pages/Pedido";
 
 export type DrawerPramsList = {
+    Pedido: undefined;
     Dashboard: undefined;
 };
 
@@ -20,13 +22,21 @@ function AppRoutes() {
                     paddingTop: 20,
                 },
 
-                drawerActiveBackgroundColor: '#1A9B91',
+                drawerActiveBackgroundColor: '#1d1d2e',
                 drawerActiveTintColor: '#FFF',
 
-                drawerInactiveBackgroundColor: '#F0F2FF',
-                drawerInactiveTintColor: '#121212'
+                drawerInactiveBackgroundColor: '#CCC',
+                drawerInactiveTintColor: '#1d1d2e',
+
+                drawerItemStyle:{
+                    marginBottom: 10
+                }
             }}
         >
+            <AppDrawer.Screen
+                name="Pedido"
+                component={Pedido}
+            />
             <AppDrawer.Screen
                 name="Dashboard"
                 component={Dashboard}
