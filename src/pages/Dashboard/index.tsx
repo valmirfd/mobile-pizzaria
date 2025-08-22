@@ -7,7 +7,7 @@ import { Background } from './styles';
 export default function Dashboard() {
     return (
         <Background>
-            <Header title="Dashboard" />
+            <Header title="Pedidos abertos" />
         </Background>
     );
 }
