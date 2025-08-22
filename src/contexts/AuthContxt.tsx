@@ -1,5 +1,7 @@
 import React, { useState, createContext, ReactNode } from "react";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { api } from "../services/api";
 
 type AuthContextData = {
@@ -10,7 +12,7 @@ type AuthContextData = {
 
 type UserProps = {
     id: string;
-    username: string;
+    name: string;
     email: string;
     token: string;
 }
@@ -30,7 +32,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     const [user, setUser] = useState<UserProps>({
         id: '',
-        username: '',
+        name: '',
         email: '',
         token: ''
     });
@@ -48,7 +50,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 email, password
             })
 
-            console.log(response.data);
+            //console.log(response.data);
+            const { id, name, token } = response.data;
+
+            const data = {
+                ...response.data
+            };
+
+            //Salvando um objeto user no storage
+            await AsyncStorage.setItem('@pizzatoken', JSON.stringify(data));
+
+            //para usar o token nas próximas requsições
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+            setUser({
+                id, name, email, token
+            });
+
+            setLoadingAuth(false)
 
         } catch (err) {
             console.log("Erro ao fazer login...", err);
