@@ -4,6 +4,9 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Dashboard from "../pages/Dashboard";
 import Pedido from "../pages/Pedido";
 
+import CustomDrawer from "../components/CustomDrawer";
+
+
 export type DrawerPramsList = {
     Pedido: undefined;
     Dashboard: undefined;
@@ -14,6 +17,7 @@ const AppDrawer = createDrawerNavigator<DrawerPramsList>();
 function AppRoutes() {
     return (
         <AppDrawer.Navigator
+            drawerContent={CustomDrawer}
             screenOptions={{
                 headerShown: false,
 
@@ -29,7 +33,8 @@ function AppRoutes() {
                 drawerInactiveTintColor: '#1d1d2e',
 
                 drawerItemStyle:{
-                    marginBottom: 10
+                    marginBottom: 10,
+                    borderRadius: 8,
                 }
             }}
         >

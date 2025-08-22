@@ -3,12 +3,19 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Order from "../pages/Order";
 
+import { DrawerContentComponentProps } from "@react-navigation/drawer";
+
 export type OrderParamList = {
   Order: {
     number: number | string;
     order_id: string;
   };
 }
+
+export type DrawerProps = {
+    props: DrawerContentComponentProps;
+   
+};
 
 const AuthStack = createNativeStackNavigator<OrderParamList>();
 
