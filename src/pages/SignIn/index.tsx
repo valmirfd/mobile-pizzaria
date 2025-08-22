@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { ActivityIndicator } from "react-native";
 
 import {
     Background,
@@ -21,7 +22,7 @@ import { AuthContext } from "../../contexts/AuthContxt";
 
 export default function SignIn() {
     const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, loadingAuth } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -57,13 +58,19 @@ export default function SignIn() {
                     <Input
                         placeholder="Digite sua senha"
                         placeholderTextColor="#F0F0F0"
+                        secureTextEntry={true}
                         value={password}
                         onChangeText={setPassword}
                     />
                 </AreaInput>
 
                 <SubmitButton onPress={handleLogin}>
-                    <SubmitText>Acessar</SubmitText>
+                    {loadingAuth ? (
+                        <ActivityIndicator size={25} color="#FFF" />
+                    ) : (
+                        <SubmitText>Acessar</SubmitText>
+                    )}
+
                 </SubmitButton>
 
                 <Link onPress={() => navigation.navigate('SignUp')}>
