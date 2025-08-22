@@ -8,7 +8,7 @@ export const Background = styled.View`
 
 export const Container = styled.View`
     flex: 1;
-    margin: 16px;
+    margin: 24px;
 `;
 
 export const Titulo = styled.Text`
@@ -37,8 +37,8 @@ export const Input = styled.TextInput`
 
 export const SubmitButton = styled.TouchableOpacity`
     width: 100%;
-    height: 47px;
-    border-radius: 4px;
+    height: 45px;
+    border-radius: 8px;
     background-color: #3fffa3;
     margin-top: 10px;
     align-items: center;

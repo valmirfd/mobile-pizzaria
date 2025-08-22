@@ -22,7 +22,7 @@ export default function Pedido() {
     return (
 
         <Background>
-            <Header title="Abrir Pedido" />
+            <Header title="Abrir mesa" />
             <Container>
 
                 <AreaInput>
