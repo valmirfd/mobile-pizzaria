@@ -19,11 +19,12 @@ export default function CustomDrawer(props) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginTop: 5,
-                marginBottom: 50
+                marginBottom: 50,
+                flexDirection: 'column'
             }}>
                 <Image
                     source={require('../../assets/cofre.jpeg')}
-                    style={{ width: 200, height: 100 }}
+                    style={{ width: 200, height: 100}}
                 />
 
                 <Text style={{ color: '#000', fontSize: 17, marginTop: 10, fontWeight: 'bold' }}>

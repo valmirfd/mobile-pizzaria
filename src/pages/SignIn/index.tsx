@@ -42,7 +42,7 @@ export default function SignIn() {
             <Container>
 
                 <Logo
-                    source={require('../../assets/logo2.png')}
+                    source={require('../../assets/logo.png')}
                 />
 
                 <AreaInput>

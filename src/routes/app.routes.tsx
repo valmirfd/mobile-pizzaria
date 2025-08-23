@@ -42,7 +42,7 @@ function AppRoutes() {
                 name="Pedido"
                 component={Pedido}
                 options={{
-                    title: 'Abrir Mesa'
+                    title: 'Novo pedido'
                 }}
             />
             <AppDrawer.Screen

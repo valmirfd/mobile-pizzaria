@@ -8,7 +8,14 @@ export const Background = styled.View`
 
 export const Container = styled.View`
     flex: 1;
-    margin: 24px;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 15px;
+    background-color: #1d1d2e;
+`;
+
+export const Logo = styled.Image`
+    margin-bottom: 25px;
 `;
 
 export const Titulo = styled.Text`
@@ -25,22 +32,22 @@ export const AreaInput = styled.View`
 `;
 
 export const Input = styled.TextInput`
-    width: 100%;
-    height: 50px;
+    width: 90%;
+    height: 60px;
     background-color: #101026;
-    margin-bottom: 12px;
     border-radius: 8px;
-    font-size: 17px;
-    padding: 8px;
+    padding-inline: 8px;
+    text-align: center;
+    font-size: 22px;
     color: #FFF;
 `;
 
 export const SubmitButton = styled.TouchableOpacity`
-    width: 100%;
+    width: 90%;
     height: 45px;
     border-radius: 8px;
     background-color: #3fffa3;
-    margin-top: 10px;
+    margin-top: 30px;
     align-items: center;
     justify-content: center;
 `;

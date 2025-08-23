@@ -3,13 +3,13 @@ import styled from "styled-components/native";
 export const Background = styled.View`
     flex: 1;
     background-color: #1d1d2e;
-    margin: 16px;
 `;
 
 export const Container = styled.KeyboardAvoidingView`
     flex: 1;
     align-items: center;
     justify-content: center;
+    margin: 16px;
 `;
 
 export const Logo = styled.Image`

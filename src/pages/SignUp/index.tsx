@@ -24,7 +24,7 @@ export default function SignUp() {
             <Container>
 
                 <Logo
-                    source={require('../../assets/logo2.png')}
+                    source={require('../../assets/logo.png')}
                 />
 
                 <AreaInput>

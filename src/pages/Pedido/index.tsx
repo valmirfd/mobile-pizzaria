@@ -9,6 +9,7 @@ import {
     SubmitButton,
     SubmitText,
     Container,
+    Logo
 } from './styles';
 
 import { AuthContext } from "../../contexts/AuthContxt";
@@ -22,8 +23,12 @@ export default function Pedido() {
     return (
 
         <Background>
-            <Header title="Abrir mesa" />
+            <Header title="Novo pedido" />
             <Container>
+
+                <Logo
+                    source={require('../../assets/logo.png')}
+                />
 
                 <AreaInput>
                     <Input
