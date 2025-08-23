@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import { Text, View, Button } from "react-native";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import {
     Background,
-    Titulo,
     AreaInput,
     Input,
     SubmitButton,
@@ -12,13 +10,30 @@ import {
     Logo
 } from './styles';
 
-import { AuthContext } from "../../contexts/AuthContxt";
 
+import { useNavigation } from "@react-navigation/native";
+
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { StackOrderParamsList } from "../../routes/order.routes";
 
 
 
 export default function Pedido() {
-    const { signOut } = useContext(AuthContext);
+    const navigation = useNavigation<NativeStackNavigationProp<StackOrderParamsList>>();
+
+    const [number, setNumber] = useState('');
+
+    async function openOrder() {
+        if (number === '') {
+            return;
+        }
+
+        navigation.navigate('Order');
+    }
+
+
+
 
     return (
 
@@ -34,10 +49,12 @@ export default function Pedido() {
                     <Input
                         placeholder="Número da mesa"
                         placeholderTextColor="#FFF"
+                        value={number}
+                        onChangeText={setNumber}
                     />
                 </AreaInput>
 
-                <SubmitButton>
+                <SubmitButton onPress={openOrder}>
                     <SubmitText>Abrir</SubmitText>
                 </SubmitButton>
             </Container>

@@ -3,36 +3,31 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Order from "../pages/Order";
 
-import { DrawerContentComponentProps } from "@react-navigation/drawer";
 
-export type OrderParamList = {
-  Order: {
+export type StackOrderParamsList = {
+  Pedido: undefined;
+  /*Order: {
     number: number | string;
     order_id: string;
-  };
+  };*/
+  Order: undefined;
 }
 
-export type DrawerProps = {
-    props: DrawerContentComponentProps;
-   
-};
 
-const AuthStack = createNativeStackNavigator<OrderParamList>();
+
+const StackOrder = createNativeStackNavigator<StackOrderParamsList>();
 
 
 function OrderRoutes() {
   return (
-    <AuthStack.Navigator>
-      <AuthStack.Screen
+    <StackOrder.Navigator>
+      <StackOrder.Screen
         name="Order"
         component={Order}
-        options={{
-          headerShown: false
-        }}
+        options={{ headerShown: false }}
       />
-
-    </AuthStack.Navigator>
-  );
+    </StackOrder.Navigator>
+  )
 }
 
 export default OrderRoutes;
